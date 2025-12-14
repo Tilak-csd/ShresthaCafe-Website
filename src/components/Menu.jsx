@@ -8,7 +8,7 @@ export default function Menu() {
                 {/* Card 1 */}
                 <div className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
                     <img
-                        src="./coffee.jpg"
+                        src="./coffee.avif"
                         alt="Coffee"
                         loading='lazy'
                         className="h-56 w-full object-cover"
@@ -40,7 +40,7 @@ export default function Menu() {
                 {/* Card 3 */}
                 <div className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
                     <img
-                        src="./desert.jpg"
+                        src="./desert.avif"
                         alt="Desserts"
                         loading='lazy'
                         className="h-56 w-full object-cover"
