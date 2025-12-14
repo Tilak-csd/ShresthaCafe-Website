@@ -18,7 +18,7 @@ export default function Navbar() {
   return (
     <div className="relative">
       {/* Navbar itself */}
-      <div className="relative flex justify-between items-center h-[60px] w-full md:px-10 px-4 border-b md:border-0 border-gray-500 z-20">
+      <div className={`relative flex justify-between items-center h-[60px] w-full md:px-10 px-4 border-b md:border-0 border-gray-500 z-20 ${open ? 'bg-gray-500' : ''}`}>
         <p className="cursor-pointer font-sans text-xl  md:text-2xl text-white font-bold">Shrestha Café</p>
         {open ? (<CloseMenu setOpen={setOpen} />) : (<OpenMenu setOpen={setOpen} />)}
         {/* Desktop Menu Navbar */}
