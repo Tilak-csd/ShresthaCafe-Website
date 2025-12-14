@@ -76,7 +76,7 @@ function NavLink() {
 }
 
 // Navlink for Mobile
-function MobileNavLink() {
+function MobileNavLink({setOpen}) {
   return (
     <ul className="flex flex-col justify-center items-center gap-6 font-sans text-md md:flex-row md:h-[full]  ">
       <li className=""><a onClick={()=> setOpen(prev => !prev)} href="#" className="group relative text-white transition duration-300">
