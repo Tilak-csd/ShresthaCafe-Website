@@ -1,7 +1,10 @@
+import { NavLink } from "react-router";
+import { Navbarlink } from "../data/NavLink";
 export default function Footer() {
+  
   return (
     <footer className="w-full bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 py-16 grid gap-12 md:grid-cols-4">
+      <div className="max-w-7xl mx-auto px-6 pt-16 pb-12 grid gap-12 md:grid-cols-4">
         {/* Brand */}
         <div>
           <h3 className="text-2xl font-bold mb-4">Shrestha Café</h3>
@@ -14,10 +17,10 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-2 text-gray-400 text-sm">
-            <li className="hover:text-white cursor-pointer"><a href="#">Home</a></li>
-            <li className="hover:text-white cursor-pointer"><a href="#menu">Menu</a></li>
-            <li className="hover:text-white cursor-pointer"><a href="#">News</a></li>
-            <li className="hover:text-white cursor-pointer"><a href="#reservation">Reservations</a></li>
+            {Navbarlink.map((link, idx)=>{
+              return <li className="hover:text-white cursor-pointer"><NavLink to={link.to}>{link.title}</NavLink></li>
+            })}
+  
           </ul>
         </div>
         {/* Contact */}

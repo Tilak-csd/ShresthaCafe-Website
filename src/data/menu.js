@@ -48,7 +48,7 @@ export const menu_page = [
     category: "Coffee",
     price: "Rs. 320",
     description: "Espresso with rich chocolate and steamed milk.",
-    imageUrl: "/menu/mocha.jpg",
+    imageUrl: "/menu/mocha.webp",
   },
   {
     id: 5,
@@ -72,7 +72,7 @@ export const menu_page = [
     category: "Dessert",
     price: "Rs. 220",
     description: "Warm, fudgy brownie served with a rich chocolate taste.",
-    imageUrl: "/menu/brownie.jpg",
+    imageUrl: "/menu/brownie.avif",
   },
   {
     id: 8,
@@ -80,7 +80,7 @@ export const menu_page = [
     category: "Dessert",
     price: "Rs. 350",
     description: "Creamy cheesecake with a buttery biscuit base.",
-    imageUrl: "/menu/cheesecake.jpg",
+    imageUrl: "/menu/cheesecake.avif",
   },
   {
     id: 9,
@@ -88,7 +88,7 @@ export const menu_page = [
     category: "Bakery",
     price: "Rs. 180",
     description: "Flaky, buttery croissant baked fresh every morning.",
-    imageUrl: "/menu/croissant.jpg",
+    imageUrl: "/menu/croissant.avif",
   },
   {
     id: 10,

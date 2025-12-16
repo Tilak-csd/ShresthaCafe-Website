@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <Header>
         <Navbar />
-        <HeroSection  />
+        <HeroSection heading={'Where Every Cup Feels Like Home'} text={'A cozy place where every sip is crafted with care, warmth, and the comfort of home.'} />
       </Header>
       <Destination />
       <Menucards />
