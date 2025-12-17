@@ -1,7 +1,10 @@
 import React from 'react'
-import { Sparkles, ChevronDown, Calendar, Users, MapPin, Coffee } from 'lucide-react';
+import { Sparkles, ChevronDown, Calendar, Users, User, Coffee } from 'lucide-react';
 
 export default function Reservation_HeroSection() {
+    const reservation = () => {
+        alert("Thank you for visiting us. However, it is still under Development phase.")
+    }
     return (
         <div className="flex justify-center items-center lg:items-start px-5 md:px-10 lg:px-20 text-white w-full h-[calc(100vh-60px)] flex-col gap-5">
             <h1 className='section-heading-title text-center lg:text-left'>Good Food Deserves the Right Table</h1>
@@ -21,15 +24,17 @@ export default function Reservation_HeroSection() {
             {/* Floating Search Bar */}
             <div className="hidden lg:flex w-full max-w-7xl bg-white rounded-[2rem] shadow-2xl p-6 md:p-10 flex-wrap lg:flex-nowrap items-end gap-4 lg:gap-6 border border-gray-100">
 
-                {/* Location Selection */}
-                <SelectField
-                    label="Location"
-                    icon={<MapPin size={18} className="text-black" />}
-                >
-                    <option value="">Select branch</option>
-                    <option value="machapokhari">MachaPokhari, KTM</option>
-                    <option value="jhamsikhel">Jhamsikhel, Lalitpur</option>
-                </SelectField>
+                {/* Name of Person the Table is done reservation.. */}
+                <div className="flex flex-col gap-2 w-full">
+                    <label className="text-sm font-bold text-gray-800 ml-1 flex items-center gap-2">
+                        <User size={18} className="text-black" /> Name
+                    </label>
+                    <div className="relative group">
+                        <input type="text" className="w-full bg-gray-50 rounded-2xl px-4 py-4 outline-none border border-transparent focus:border-black focus:bg-white transition-all text-gray-600 appearance-none"
+                        placeholder='Name under Reserv...'
+                        />
+                    </div>
+                </div>
 
                 {/* Date & Time Selection */}
                 <div className="flex flex-col gap-2 w-full lg:w-1/4">
@@ -65,7 +70,7 @@ export default function Reservation_HeroSection() {
                 </SelectField>
 
                 {/* Action Button */}
-                <button className="w-full lg:w-auto bg-black hover:bg-gray-700 text-white font-bold px-12 py-4 rounded-2xl transition-all duration-300 whitespace-nowrap text-lg shadow-lg shadow-black hover:scale-[1.02] active:scale-95">
+                <button onClick={reservation} className="w-full lg:w-auto bg-black hover:bg-gray-700 text-white font-bold px-12 py-4 rounded-2xl transition-all duration-300 whitespace-nowrap text-lg shadow-lg shadow-black hover:scale-[1.02] active:scale-95">
                     Reserve Now
                 </button>
             </div>
