@@ -9,7 +9,7 @@ export default function Location() {
         <>
             <Header_sub>
                 <Navbar />
-                <HeroSection heading={"Visit Us or Call Us Today"} showbutton={false} />
+                <HeroSection heading={"Visit Us or Call Us Today"} showbutton={false} text={'We’d love to hear from you. Send us a message!'} />
             </Header_sub>
             <Contact />
         </>
