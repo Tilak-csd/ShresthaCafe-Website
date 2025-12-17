@@ -1,5 +1,6 @@
 import React from 'react'
 import { menu } from '../data/menu';
+import { NavLink } from 'react-router';
 
 export default function Menucards() {
 
@@ -27,10 +28,10 @@ export default function Menucards() {
 
             </div>
 
-            <button className="cursor-pointer rounded-full border border-black/80 px-6 py-3 text-black
+            <NavLink to='/menu' className="cursor-pointer rounded-full border border-black/80 px-6 py-3 text-black
         font-semibold tracking-wide bg-white/10 active:bg-black active:text-white hover:bg-black hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 ">
                 View Menu
-            </button>
+            </NavLink>
         </section>
     );
 }

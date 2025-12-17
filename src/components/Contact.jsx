@@ -5,7 +5,6 @@ export default function Contact() {
     return (
         <section id='contact' className="w-full py-20 bg-gray-50 flex flex-col items-center justify-center">
             <div className="max-w-6xl mx-auto w-full px-4">
-           
 
                 <div className='flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden'>
                     
@@ -46,7 +45,7 @@ export default function Contact() {
                             <button className='bg-black cursor-pointer active:bg-gray-800 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-300 shadow-md'>
                                 Send Message
                             </button>
-                        </form>q
+                        </form>
                     </div>
 
                     {/* Right Side: Image */}
