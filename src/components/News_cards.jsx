@@ -1,6 +1,9 @@
 import React from 'react'
 import { newsData } from '../data/news'
 import NewsCard from '../utlis/NewsCard'
+import FAQ from '../utlis/faq'
+import { NavLink } from 'react-router'
+
 
 export default function News_cards() {
     return (
@@ -10,6 +13,11 @@ export default function News_cards() {
                     return <NewsCard id={item.id} title={item.title} imageUrl={item.imageUrl} description={item.description} author={item.author} date={item.date} />
                 })}
             </div>
+            <FAQ />
+            <NavLink to='/location' className='curved-button border-black text-black hover:bg-black hover:text-white'>
+                 Visit Us   
+            </NavLink>
+
         </section>
     )
 }

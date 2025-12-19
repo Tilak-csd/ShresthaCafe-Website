@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 export default function Destination() {
     return (
@@ -49,11 +50,11 @@ export default function Destination() {
                         salty, and sour delight.
                     </p>
 
-                    <button
-
+                    <NavLink
+                        to='/reservation'
                         className="curved-button">
                         Make a Reservation
-                    </button>
+                    </NavLink>
                 </div>
             </div>
 
