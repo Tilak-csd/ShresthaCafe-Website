@@ -1,4 +1,4 @@
-export const FAQData = [
+ const FAQData = [
      {
     question: "Where is Shrestha Café located?",
     answer:
@@ -40,3 +40,5 @@ export const FAQData = [
       "Yes, our café is suitable for small gatherings, meetings, and celebrations. Please contact us in advance to discuss availability and arrangements."
   }
 ]
+
+export default FAQData
