@@ -29,6 +29,15 @@ export default function Reservation_HeroSection() {
 
         alert("Thank you! Reservation feature is under development.");
         console.log(form);
+        setForm({
+        name: "",
+        phone: "",
+        email: "",
+        datetime: "",
+        guests: "1",
+        diningType: "indoor",
+    })
+
     };
 
     return (

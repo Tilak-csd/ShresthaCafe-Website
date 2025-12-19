@@ -8,7 +8,7 @@ export default function Menu_cards() {
         <section id='menu' className="w-full pt-20 pb-10 bg-white flex flex-col items-center justify-center gap-9">
             <div className='max-w-6xl mx-auto grid gap-8 px-4 md:grid-cols-3 my-10'>
                 {menu_page.map((item) => {
-                    return <PriceCard id={item.id} title={item.title} imageUrl={item.imageUrl} description={item.description} price={item.price} />
+                    return <PriceCard key={item.id} id={item.id} title={item.title} imageUrl={item.imageUrl} description={item.description} price={item.price} />
                 })}
             </div>
             <NavLink to='/reservation' className="cursor-pointer rounded-full border border-black/80 px-6 py-3 text-black

@@ -7,7 +7,7 @@ export default function Contact() {
         return;
     }
     return (
-        <section id='contact' className="w-full py-20 bg-gray-50 flex flex-col items-center justify-center">
+        <section id='contact' className="w-full py-5 sm:py-20 bg-gray-50 flex flex-col items-center justify-center">
             <div className="max-w-6xl mx-auto w-full px-4">
 
                 <div className='flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden'>

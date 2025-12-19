@@ -18,7 +18,7 @@ export default function Footer() {
           <h4 className="font-semibold mb-4">Quick Links</h4>
           <ul className="space-y-2 text-gray-400 text-sm">
             {Navbarlink.map((link, idx)=>{
-              return <li className="hover:text-white cursor-pointer"><NavLink to={link.to}>{link.title}</NavLink></li>
+              return <li key={idx} className="hover:text-white cursor-pointer"><NavLink to={link.to}>{link.title}</NavLink></li>
             })}
   
           </ul>

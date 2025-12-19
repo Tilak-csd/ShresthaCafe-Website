@@ -31,7 +31,7 @@ export default function Reservation_form_mobile() {
     };
 
     return (
-        <div className="flex lg:hidden w-full max-w-7xl bg-white rounded-[2rem] shadow-2xl p-6 flex-col gap-4 border border-gray-100">
+        <div className="flex lg:hidden w-full max-w-7xl bg-white shadow-2xl p-6 flex-col gap-4 border border-gray-100">
 
             {/* Name */}
             <InputField
