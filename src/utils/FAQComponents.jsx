@@ -1,6 +1,6 @@
 // FAQ.jsx
 import { useState } from "react";
-import { Faqdata } from "../data/FaqData";
+import { Faqdata } from "../data/FAQdata";
 export default function FAQ() {
     const [activeIndex, setActiveIndex] = useState(null);
 
