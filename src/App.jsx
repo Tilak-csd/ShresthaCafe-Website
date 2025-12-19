@@ -4,12 +4,14 @@ import Menu from './pages/Menu'
 import Location from './pages/Location'
 import Reservation from './pages/Reservation'
 import News from './pages/News'
+import ScrollToTop from './ScrollToTop'
 
 function App() {
   return (
     <>
 
         <BrowserRouter>
+        <ScrollToTop />
           <Routes>
             <Route path='/' element={<Home />}></Route>
             <Route path='/menu' element={<Menu />}></Route>
