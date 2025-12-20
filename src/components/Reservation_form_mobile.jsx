@@ -1,7 +1,13 @@
-import React, { useState } from 'react'
-import { ChevronDown, Calendar, Users, User, Coffee, Phone, Mail } from 'lucide-react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { 
+    ChevronDown, Calendar, Users, User, Coffee, 
+    Phone, Mail, CheckCircle2, XCircle, X, Loader2 
+} from 'lucide-react';
+import Modal from '../utils/Modal';
 
 export default function Reservation_form_mobile() {
+    const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         name: "",
         phone: "",
@@ -11,11 +17,22 @@ export default function Reservation_form_mobile() {
         diningType: "indoor",
     });
 
+    // Modal State
+    const [modal, setModal] = useState({ 
+        isOpen: false, 
+        type: 'success', 
+        title: '', 
+        message: '' 
+    });
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const reservation = () => {
+    const closeModal = () => setModal({ ...modal, isOpen: false });
+
+    const reservation = async () => {
+        // Validation
         if (!form.name || !form.phone || !form.datetime) {
             alert("Please fill all required fields.");
             return;
@@ -26,62 +43,101 @@ export default function Reservation_form_mobile() {
             return;
         }
 
-        alert("Thank you! Reservation feature is under development.");
-        console.log(form);
+        setLoading(true);
+
+        try {
+            await axios.post(
+                "https://shrestha-cafe-backend.vercel.app/api/v1/mail",
+                {
+                    name: form.name,
+                    email: form.email,
+                    datetime: form.datetime,
+                    phone: form.phone,
+                    numberofguests: form.guests,
+                    dinnertabletype: form.diningType
+                },
+                {
+                    headers: { "Content-Type": "application/json" }
+                }
+            );
+
+            // Success Visuals
+            setModal({ 
+                isOpen: true, 
+                type: 'success', 
+                title: `Confirmed, ${form.name.split(' ')[0]}!`,
+                message: "We've received your request. Check your email for confirmation details."
+            });
+
+            // Reset Form
+            setForm({
+                name: "", phone: "", email: "", datetime: "", guests: "1", diningType: "indoor",
+            });
+
+        } catch (err) {
+            setModal({ 
+                isOpen: true, 
+                type: 'error', 
+                title: 'Reservation Failed',
+                message: 'Something went wrong on our end. Please try again or call us directly.'
+            });
+            console.error(err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <div className="flex lg:hidden w-full max-w-7xl bg-white shadow-2xl p-6 flex-col gap-4 border border-gray-100">
+        <div className="relative flex lg:hidden w-full max-w-7xl bg-white shadow-2xl p-6 flex-col gap-4 border border-gray-100 min-h-screen">
+            
+            {/* --- MODERN MODAL --- */}
+            {modal.isOpen && <Modal closeModal={closeModal} modal={modal} />}
 
-            {/* Name */}
+            {/* --- FORM FIELDS --- */}
             <InputField
-                label="Name *"
-                icon={<User size={18} />}
+                label="Full Name *"
+                icon={<User size={18} className="text-gray-400" />}
                 name="name"
-                placeholder="Name under reservation"
+                placeholder="John Doe"
                 value={form.name}
                 onChange={handleChange}
             />
 
-            {/* Phone */}
             <InputField
-                label="Phone *"
-                icon={<Phone size={18} />}
+                label="Phone Number *"
+                icon={<Phone size={18} className="text-gray-400" />}
                 name="phone"
                 placeholder="98XXXXXXXX"
                 value={form.phone}
                 onChange={handleChange}
             />
 
-            {/* Email */}
             <InputField
-                label="Email (optional)"
-                icon={<Mail size={18} />}
+                label="Email Address"
+                icon={<Mail size={18} className="text-gray-400" />}
                 name="email"
                 type="email"
-                placeholder="you@example.com"
+                placeholder="john@example.com"
                 value={form.email}
                 onChange={handleChange}
             />
 
-            {/* Date & Time */}
             <div className="flex flex-col gap-2 w-full">
                 <label className="text-sm font-bold text-gray-800 ml-1 flex items-center gap-2">
-                    <Calendar size={16} /> Date & Time *
+                    <Calendar size={16} className="text-gray-400" /> Date & Time *
                 </label>
                 <input
                     type="datetime-local"
                     name="datetime"
                     value={form.datetime}
                     onChange={handleChange}
-                    className="w-full bg-gray-50 rounded-md px-4 py-4 outline-none border border-transparent focus:border-black focus:bg-white transition-all text-gray-600"
+                    className="w-full bg-gray-50 rounded-xl px-4 py-4 outline-none border border-gray-100 focus:border-black focus:bg-white transition-all text-gray-600 font-medium"
                 />
             </div>
 
-            {/* Guests */}
             <SelectField
-                label="Guest"
-                icon={<Users size={18} />}
+                label="Number of Guests"
+                icon={<Users size={18} className="text-gray-400" />}
                 name="guests"
                 value={form.guests}
                 onChange={handleChange}
@@ -93,10 +149,9 @@ export default function Reservation_form_mobile() {
                 <option value="10">10+ (Large Group)</option>
             </SelectField>
 
-            {/* Dining Type */}
             <SelectField
-                label="Dining Type"
-                icon={<Coffee size={18} />}
+                label="Dining Preference"
+                icon={<Coffee size={18} className="text-gray-400" />}
                 name="diningType"
                 value={form.diningType}
                 onChange={handleChange}
@@ -106,18 +161,33 @@ export default function Reservation_form_mobile() {
                 <option value="quiet">Quiet Zone (Work)</option>
             </SelectField>
 
-            {/* Button */}
+            {/* --- SUBMIT BUTTON --- */}
             <button
                 onClick={reservation}
-                className="cursor-pointer rounded-md border border-black/80 px-6 w-full py-3 text-white
-        font-semibold tracking-wide bg-black active:bg-white active:text-black hover:bg-white hover:text-black hover:shadow-xl hover:scale-105 transition-all duration-300"
+                disabled={loading}
+                className={`mt-4 flex items-center justify-center gap-2 cursor-pointer rounded-xl border border-black px-6 w-full py-4 text-white
+                font-bold tracking-wide transition-all duration-300 ${
+                    loading 
+                    ? "bg-gray-800 cursor-not-allowed" 
+                    : "bg-black hover:bg-white hover:text-black active:scale-95"
+                }`}
             >
-                Book Now
+                {loading ? (
+                    <>
+                        <Loader2 className="animate-spin" size={20} />
+                        Processing...
+                    </>
+                ) : (
+                    "Book Now"
+                )}
             </button>
         </div>
     );
 }
 
+/**
+ * Reusable Input Component
+ */
 function InputField({ label, icon, ...props }) {
     return (
         <div className="flex flex-col gap-2 w-full">
@@ -126,12 +196,15 @@ function InputField({ label, icon, ...props }) {
             </label>
             <input
                 {...props}
-                className="w-full bg-gray-50 rounded-md px-4 py-3 outline-none border border-transparent focus:border-black focus:bg-white transition-all text-gray-600"
+                className="w-full bg-gray-50 rounded-xl px-4 py-3.5 outline-none border border-gray-100 focus:border-black focus:bg-white transition-all text-gray-600 font-medium placeholder:text-gray-300"
             />
         </div>
     );
 }
 
+/**
+ * Reusable Select Component
+ */
 function SelectField({ label, icon, children, ...props }) {
     return (
         <div className="flex flex-col gap-2 w-full">
@@ -141,7 +214,7 @@ function SelectField({ label, icon, children, ...props }) {
             <div className="relative">
                 <select
                     {...props}
-                    className="w-full cursor-pointer bg-gray-50 rounded-md px-5 py-3 outline-none border border-transparent focus:border-black focus:bg-white transition-all text-gray-600 appearance-none"
+                    className="w-full cursor-pointer bg-gray-50 rounded-xl px-5 py-3.5 outline-none border border-gray-100 focus:border-black focus:bg-white transition-all text-gray-600 font-medium appearance-none"
                 >
                     {children}
                 </select>

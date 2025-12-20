@@ -1,7 +1,10 @@
-import { useState } from "react";
-import { User, Calendar, Users, Coffee, Sparkles, ChevronDown, Phone, Mail } from "lucide-react";
+import { useEffect, useState } from "react";
+import { User, Calendar, Users, Coffee, Sparkles, ChevronDown, Phone, Mail, Loader2  } from "lucide-react";
+import axios from 'axios'
+import Modal from "../utils/Modal";
 
 export default function Reservation_HeroSection() {
+    const [loading, setLoading] = useState(false);
     const [form, setForm] = useState({
         name: "",
         phone: "",
@@ -11,11 +14,21 @@ export default function Reservation_HeroSection() {
         diningType: "indoor",
     });
 
+    // Modal State
+    const [modal, setModal] = useState({
+        isOpen: false,
+        type: 'success',
+        title: '',
+        message: ''
+    });
+
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    const reservation = () => {
+    const closeModal = () => setModal({ ...modal, isOpen: false });
+
+    const reservation = async () => {
         if (!form.name || !form.phone || !form.datetime) {
             alert("Please fill all required fields.");
             return;
@@ -26,22 +39,63 @@ export default function Reservation_HeroSection() {
             alert("Please select a future date & time.");
             return;
         }
+        setLoading(true)
 
-        alert("Thank you! Reservation feature is under development.");
-        console.log(form);
-        setForm({
-        name: "",
-        phone: "",
-        email: "",
-        datetime: "",
-        guests: "1",
-        diningType: "indoor",
-    })
+        // Sending the email to the customer for booking the table
+        try {
+            const res = await axios.post(
+                "https://shrestha-cafe-backend.vercel.app/api/v1/mail",
+                {
+                    name: form.name,
+                    email: form.email,
+                    datetime: form.datetime,
+                    phone: form.phone,
+                    numberofguests: form.guests,
+                    dinnertabletype: form.diningType
+                },
+                {
+                    header: {
+                        "Content-Type": "application/json"
+                    }
+                }
 
+            );
+
+            // Success Visuals
+            setModal({
+                isOpen: true,
+                type: 'success',
+                title: `Confirmed, ${form.name.split(' ')[0]}!`,
+                message: "We've received your request. Check your email for confirmation details."
+            });
+
+            setForm({
+                name: "",
+                phone: "",
+                email: "",
+                datetime: "",
+                guests: "1",
+                diningType: "indoor",
+            })
+
+        } catch (err) {
+            setModal({
+                isOpen: true,
+                type: 'error',
+                title: 'Reservation Failed',
+                message: 'Something went wrong on our end. Please try again or call us directly.'
+            });
+            console.log(err)
+        } finally {
+            setLoading(false)
+        }
     };
+
 
     return (
         <div className="flex justify-center items-center lg:items-start px-5 md:px-10 lg:px-20 text-white w-full h-[calc(100vh-60px)] flex-col gap-5">
+
+            {modal.isOpen && <Modal closeModal={closeModal} modal={modal} />}
             <h1 className="section-heading-title text-center lg:text-left">
                 Good Food Deserves the Right Table
             </h1>
@@ -118,7 +172,7 @@ export default function Reservation_HeroSection() {
                     <option value="2" className="cursor-pointer">2 People</option>
                     <option value="4" className="cursor-pointer">4 People</option>
                     <option value="6" className="cursor-pointer">6 People</option>
-                    <option value="10" className="cursor-pointer">10+ (Large Group)</option>
+                    <option value="10+" className="cursor-pointer">10+ (Large Group)</option>
                 </SelectField>
 
                 {/* Dining Type */}
@@ -134,17 +188,31 @@ export default function Reservation_HeroSection() {
                     <option value="quiet" className="cursor-pointer">Quiet Zone (Work)</option>
                 </SelectField>
 
-                <button
-                    onClick={reservation}
-                    className="cursor-pointer rounded-md border border-black/80 px-6 w-full py-3 text-white
-        font-semibold tracking-wide bg-black active:bg-white active:text-black hover:bg-white hover:text-black hover:shadow-xl hover:scale-105 transition-all duration-300"
-                >
-                    Book Now
-                </button>
+                   {/* --- SUBMIT BUTTON --- */}
+            <button
+                onClick={reservation}
+                disabled={loading}
+                className={`mt-4 flex items-center justify-center gap-2 cursor-pointer rounded-xl border border-black px-6 w-full py-4 text-white
+                font-bold tracking-wide transition-all duration-300 ${
+                    loading 
+                    ? "bg-gray-800 cursor-not-allowed" 
+                    : "bg-black hover:bg-white hover:text-black active:scale-95"
+                }`}
+            >
+                {loading ? (
+                    <>
+                        <Loader2 className="animate-spin" size={20} />
+                        Processing...
+                    </>
+                ) : (
+                    "Book Now"
+                )}
+            </button>
             </div>
         </div>
     );
-}
+};
+
 
 function InputField({ label, icon, ...props }) {
     return (
