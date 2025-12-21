@@ -44,7 +44,7 @@ export default function Reservation_HeroSection() {
         // Sending the email to the customer for booking the table
         try {
             const res = await axios.post(
-                "https://shrestha-cafe-backend.vercel.app/api/v1/mail",
+                "https://shrestha-cafe-backend.vercel.app/api/v1/reservationmail",
                 {
                     name: form.name,
                     email: form.email,
