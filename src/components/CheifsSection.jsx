@@ -1,4 +1,5 @@
 import { staff } from "../data/KitchenStaff";
+import { motion } from 'motion/react'
 
 export default function ChefsSection() {
   return (
@@ -7,7 +8,11 @@ export default function ChefsSection() {
         <div className="grid gap-12 md:grid-cols-3">
 
           {staff.map((member, idx) => {
-            return <div key={idx} className="flex flex-col items-center">
+            return <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              key={idx} className="flex flex-col items-center">
               <div className="w-52 h-52 rounded-full overflow-hidden mb-6">
                 <img
                   src={member.image}
@@ -21,9 +26,9 @@ export default function ChefsSection() {
               <p className="text-gray-600 text-sm max-w-xs">
                 {member.slogans}
               </p>
-            </div>
+            </motion.div>
           })}
-         
+
         </div>
       </div>
     </section>

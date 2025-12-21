@@ -1,9 +1,18 @@
 import React from 'react'
 import { NavLink } from 'react-router'
+// animation libary
+import {motion} from 'motion/react'
+
 
 export default function HeroSection({ showbutton = true, heading, text }) {
     return (
-        <div className="flex justify-center items-center text-white w-full h-[calc(100vh-60px)] flex-col gap-5">
+        <motion.div 
+        initial={{opacity:0, y:20}}
+        whileInView={{opacity:1, y:0}}
+        viewport={{once:false, amount:0.6}}
+        transition={{duration:.6, ease:"easeOut"}}
+
+        className="flex justify-center items-center text-white w-full h-[calc(100vh-60px)] flex-col gap-5">
             {/* heading */}
             <h1 className='section-heading-title'>
                 {heading}
@@ -14,7 +23,7 @@ export default function HeroSection({ showbutton = true, heading, text }) {
             </p>
             {/* button if required */}
             {showbutton && <Button to={'/reservation'} />}
-        </div>
+        </motion.div>
     )
 }
 function Button({ to }) {

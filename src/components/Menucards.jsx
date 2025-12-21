@@ -1,6 +1,7 @@
 import React from 'react'
 import { menu } from '../data/menu';
 import { NavLink } from 'react-router';
+import { motion } from 'motion/react'
 
 export default function Menucards() {
 
@@ -10,7 +11,11 @@ export default function Menucards() {
 
                 {/* Card 1 */}
                 {menu.map((items, idx) => {
-                    return <div key={idx} className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
+                    return <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        key={idx} className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
                         <img
                             src={items.imageUrl}
                             alt={items.title}
@@ -20,18 +25,22 @@ export default function Menucards() {
                         <div className="p-6 text-center">
                             <h3 className="text-xl font-semibold mb-2">{items.title}</h3>
                             <p className="text-gray-600 text-sm">
-                               {items.description}
+                                {items.description}
                             </p>
                         </div>
-                    </div>
+                    </motion.div>
                 })}
 
             </div>
 
-            <NavLink to='/menu' className="cursor-pointer rounded-full border border-black/80 px-6 py-3 text-black
+            <motion.NavLink
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                to='/menu' className="cursor-pointer rounded-full border border-black/80 px-6 py-3 text-black
         font-semibold tracking-wide bg-white/10 active:bg-black active:text-white hover:bg-black hover:text-white hover:shadow-xl hover:scale-105 transition-all duration-300 ">
                 View Menu
-            </NavLink>
+            </motion.NavLink>
         </section>
     );
 }

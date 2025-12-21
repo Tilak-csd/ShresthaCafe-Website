@@ -1,11 +1,16 @@
 import { NavLink } from "react-router";
-import {ArrowUpRight} from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+import {motion} from 'motion/react'
 
 export default function GetInTouch() {
   return (
-    <section id="getintouch" className="w-full py-15 bg-gray-50 flex justify-center items-center flex-col gap-10">
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      id="getintouch" className="w-full py-15 bg-gray-50 flex justify-center items-center flex-col gap-10">
       <div className="max-w-5xl mx-auto px-4 text-center">
-        
+
         {/* Heading */}
         <h2 className="text-3xl md:text-4xl font-bold mb-6">
           Get in Touch
@@ -20,7 +25,7 @@ export default function GetInTouch() {
 
         {/* Contact Info */}
         <div className="grid gap-10 md:grid-cols-3">
-          
+
           <div>
             <h4 className="font-semibold text-lg mb-2">Visit Us</h4>
             <p className="text-gray-600 text-sm">
@@ -47,6 +52,6 @@ export default function GetInTouch() {
 
       </div>
       <NavLink to='/location' className='curved-button border-black text-black hover:bg-black hover:text-white flex'>Contact Us <ArrowUpRight /></NavLink>
-    </section>
+    </motion.section>
   );
 }
