@@ -7,7 +7,7 @@ export default function ChatBot_Buttons({ setIsOpen, isOpen }) {
             className={`${
                 isOpen 
                 ? "bg-[#1c1a16] border border-[#2d2a24]" // Dark Espresso when open
-                : "bg-amber-600 hover:bg-amber-700 shadow-[0_10px_25px_rgba(217,119,6,0.3)]" // Warm Amber when closed
+                : "bg-amber-600 hover: hover:bg-amber-700 shadow-[0_10px_25px_rgba(217,119,6,0.3)]" // Warm Amber when closed
             } text-white p-3 cursor-pointer rounded-full shadow-2xl transition-all duration-300 hover:scale-110 active:scale-90`}
         >
             {isOpen ? (
