@@ -102,7 +102,7 @@ export default function Reservation_HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                    duration: 0.8, // Increased slightly for more "glide"
+                    duration: 0.6, // Increased slightly for more "glide"
                     ease: "easeOut"
                 }}
                 className="section-heading-title text-center lg:text-left">
@@ -114,7 +114,7 @@ export default function Reservation_HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                    duration: 0.8, // Increased slightly for more "glide"
+                    duration: 0.6, // Increased slightly for more "glide"
                     ease: "easeOut",
                     delay: .2
                 }}
@@ -127,7 +127,7 @@ export default function Reservation_HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                    duration: 0.8, // Increased slightly for more "glide"
+                    duration: 0.6, // Increased slightly for more "glide"
                     ease: "easeOut",
                     delay : .3
                 }}
@@ -143,7 +143,7 @@ export default function Reservation_HeroSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{
-                    duration: 0.8, // Increased slightly for more "glide"
+                    duration: 0.6, // Increased slightly for more "glide"
                     ease: "easeOut",
                     delay : .4
                 }}
