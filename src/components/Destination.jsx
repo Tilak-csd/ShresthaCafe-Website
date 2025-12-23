@@ -8,10 +8,10 @@ export default function Destination() {
 
             {/* Heading */}
             <motion.h1
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{once :true}}
-                transition={{ duration: 0.4, ease: "easeOut", delay: .2 }}
+                viewport={{ once: true, amount: .3 }}
+                transition={{ duration: 0.4, ease: "easeOut", }}
                 className="text-center font-bold text-3xl md:text-4xl xl:text-5xl mt-16"
             >
                 A DESTINATION
@@ -19,10 +19,10 @@ export default function Destination() {
 
             {/* Description */}
             <motion.p
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{once :true}}
-                transition={{ duration: 0.4, ease: "easeOut", delay: .2 }}
+                viewport={{ once: true, amount: .3 }}
+                transition={{ duration: 0.4, ease: "easeOut", }}
                 className="max-w-3xl mx-auto text-center leading-relaxed text-gray-600 px-4 mt-6"
             >
                 We serve as a premier destination offering a refined environment for discerning patrons.
@@ -41,15 +41,14 @@ export default function Destination() {
 
                 {/* Content */}
                 <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{once :true}}
-                        transition={{ duration: 0.4, ease: "easeOut", delay: .2 }}
-
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: .3 }}
+                    transition={{ duration: 0.4, ease: "easeOut", delay: .2}}
                     className="relative z-20 h-full flex flex-col items-center justify-center gap-7 px-4"
                 >
                     <h1
-                  
+
                         className="section-heading-title text-white"
                     >
                         EAT TOGETHER
@@ -62,7 +61,7 @@ export default function Destination() {
                         salty, and sour delight.
                     </p>
 
-                    <NavLink 
+                    <NavLink
                         to='/reservation'
                         className="curved-button">
                         Make a Reservation

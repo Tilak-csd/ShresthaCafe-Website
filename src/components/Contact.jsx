@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import axios from 'axios'
 import Modal from '../utils/Modal'
+import { motion } from 'motion/react'
 
 
 export default function Contact() {
@@ -42,7 +43,7 @@ export default function Contact() {
                 }
             )
             // SUCCESS: Use 'name' instead of 'form.name'
-        const firstName = name ? name.split(' ')[0] : 'Guest';
+            const firstName = name ? name.split(' ')[0] : 'Guest';
             // Success Visuals
             setModal({
                 isOpen: true,
@@ -77,7 +78,15 @@ export default function Contact() {
                 <div className='flex flex-col md:flex-row bg-white rounded-2xl shadow-xl overflow-hidden'>
 
                     {/* Left Side: Info & Form */}
-                    <div className='w-full md:w-1/2 p-8 lg:p-12 flex flex-col gap-10'>
+                    <motion.div
+                        initial={{ opacity: 0, x: -40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{
+                            duration: 0.8, // Increased slightly for more "glide"
+                            ease: "easeOut"
+                        }}
+                        className='w-full md:w-1/2 p-8 lg:p-12 flex flex-col gap-10'>
 
                         {/* Location details */}
                         <div>
@@ -126,10 +135,18 @@ export default function Contact() {
                                 )}
                             </button>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right Side: Image */}
-                    <div className='hidden md:block md:w-1/2 relative'>
+                    <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{
+                            duration: 0.8, // Increased slightly for more "glide"
+                            ease: "easeOut"
+                        }}
+                    className='hidden md:block md:w-1/2 relative'>
                         <img
                             src="/contact/side_image.webp"
                             alt="Shrestha Cafe Interior"
@@ -137,7 +154,7 @@ export default function Contact() {
                         />
                         {/* Overlay to soften the image if needed */}
                         <div className="absolute inset-0 bg-black/10"></div>
-                    </div>
+                    </motion.div>
                 </div>
             </div>
         </section>

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { 
-    ChevronDown, Calendar, Users, User, Coffee, 
-    Phone, Mail, CheckCircle2, XCircle, X, Loader2 
+import {
+    ChevronDown, Calendar, Users, User, Coffee,
+    Phone, Mail, CheckCircle2, XCircle, X, Loader2
 } from 'lucide-react';
 import Modal from '../utils/Modal';
+import {motion} from 'motion/react'
 
 export default function Reservation_form_mobile() {
     const [loading, setLoading] = useState(false);
@@ -18,11 +19,11 @@ export default function Reservation_form_mobile() {
     });
 
     // Modal State
-    const [modal, setModal] = useState({ 
-        isOpen: false, 
-        type: 'success', 
-        title: '', 
-        message: '' 
+    const [modal, setModal] = useState({
+        isOpen: false,
+        type: 'success',
+        title: '',
+        message: ''
     });
 
     const handleChange = (e) => {
@@ -44,7 +45,7 @@ export default function Reservation_form_mobile() {
         }
 
         setLoading(true);
- 
+
         try {
             await axios.post(
                 "https://shrestha-cafe-backend.vercel.app/api/v1/reservationmail",
@@ -62,9 +63,9 @@ export default function Reservation_form_mobile() {
             );
 
             // Success Visuals
-            setModal({ 
-                isOpen: true, 
-                type: 'success', 
+            setModal({
+                isOpen: true,
+                type: 'success',
                 title: `Confirmed, ${form.name.split(' ')[0]}!`,
                 message: "We've received your request. Check your email for confirmation details."
             });
@@ -75,9 +76,9 @@ export default function Reservation_form_mobile() {
             });
 
         } catch (err) {
-            setModal({ 
-                isOpen: true, 
-                type: 'error', 
+            setModal({
+                isOpen: true,
+                type: 'error',
                 title: 'Reservation Failed',
                 message: 'Something went wrong on our end. Please try again or call us directly.'
             });
@@ -88,8 +89,13 @@ export default function Reservation_form_mobile() {
     };
 
     return (
-        <div className="relative flex lg:hidden w-full max-w-7xl bg-white shadow-2xl p-6 flex-col gap-4 border border-gray-100 min-h-screen">
-            
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut",}}
+            className="relative flex lg:hidden w-full max-w-7xl bg-white shadow-2xl p-6 flex-col gap-4 border border-gray-100 min-h-screen">
+
             {/* --- MODERN MODAL --- */}
             {modal.isOpen && <Modal closeModal={closeModal} modal={modal} />}
 
@@ -166,11 +172,10 @@ export default function Reservation_form_mobile() {
                 onClick={reservation}
                 disabled={loading}
                 className={`mt-4 flex items-center justify-center gap-2 cursor-pointer rounded-xl border border-black px-6 w-full py-4 text-white
-                font-bold tracking-wide transition-all duration-300 ${
-                    loading 
-                    ? "bg-gray-800 cursor-not-allowed" 
-                    : "bg-black hover:bg-white hover:text-black active:scale-95"
-                }`}
+                font-bold tracking-wide transition-all duration-300 ${loading
+                        ? "bg-gray-800 cursor-not-allowed"
+                        : "bg-black hover:bg-white hover:text-black active:scale-95"
+                    }`}
             >
                 {loading ? (
                     <>
@@ -181,7 +186,7 @@ export default function Reservation_form_mobile() {
                     "Book Now"
                 )}
             </button>
-        </div>
+        </motion.div>
     );
 }
 

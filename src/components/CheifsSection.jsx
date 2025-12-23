@@ -9,10 +9,10 @@ export default function ChefsSection() {
 
           {staff.map((member, idx) => {
             return <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-                viewport={{once :true}}
-              transition={{ duration: 0.6, ease: "easeOut", delay : .2 }}
+                viewport={{once :true, amount: 0.3}}
+              transition={{ duration: 0.6, ease: "easeOut", delay : idx * .2 }}
               key={idx} className="flex flex-col items-center">
               <div className="w-52 h-52 rounded-full overflow-hidden mb-6">
                 <img

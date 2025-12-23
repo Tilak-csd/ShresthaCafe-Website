@@ -6,17 +6,6 @@ import { Navbarlink } from '../data/NavLink';
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  useEffect(() => {
-    if (open) {
-      document.body.style.overflowY = 'hidden';
-    } else {
-      document.body.style.overflowY = 'auto';
-    }
-    return () => {
-      document.body.style.overflowY = 'auto';
-    };
-  }, [open]);
-
   return (
     <div className="relative">
       {/* Navbar itself */}

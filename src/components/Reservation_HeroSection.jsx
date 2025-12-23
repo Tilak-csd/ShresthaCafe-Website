@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { User, Calendar, Users, Coffee, Sparkles, ChevronDown, Phone, Mail, Loader2  } from "lucide-react";
+import { User, Calendar, Users, Coffee, Sparkles, ChevronDown, Phone, Mail, Loader2 } from "lucide-react";
 import axios from 'axios'
 import Modal from "../utils/Modal";
+import { motion } from 'motion/react'
 
 export default function Reservation_HeroSection() {
     const [loading, setLoading] = useState(false);
@@ -96,22 +97,57 @@ export default function Reservation_HeroSection() {
         <div className="flex justify-center items-center lg:items-start px-5 md:px-10 lg:px-20 text-white w-full h-[calc(100vh-60px)] flex-col gap-5">
 
             {modal.isOpen && <Modal closeModal={closeModal} modal={modal} />}
-            <h1 className="section-heading-title text-center lg:text-left">
+            <motion.h1
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                    duration: 0.8, // Increased slightly for more "glide"
+                    ease: "easeOut"
+                }}
+                className="section-heading-title text-center lg:text-left">
                 Good Food Deserves the Right Table
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg md:text-xl text-center lg:text-left text-gray-200 max-w-xl italic font-light">
+            <motion.p
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                    duration: 0.8, // Increased slightly for more "glide"
+                    ease: "easeOut",
+                    delay: .2
+                }}
+                className="text-lg md:text-xl text-center lg:text-left text-gray-200 max-w-xl italic font-light">
                 "Whether it’s a morning brew, a business lunch, or an intimate dinner, we’ll have the perfect spot waiting for you"
-            </p>
+            </motion.p>
 
-            <div className="flex items-center gap-2 bg-white/10 backdrop-blur-[2px] border border-white/30 rounded-full px-4 py-2 w-fit">
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                    duration: 0.8, // Increased slightly for more "glide"
+                    ease: "easeOut",
+                    delay : .3
+                }}
+                className="flex items-center gap-2 bg-white/10 backdrop-blur-[2px] border border-white/30 rounded-full px-4 py-2 w-fit">
                 <Sparkles size={16} />
                 <span className="text-sm font-medium">
                     Real-time availability. Instant confirmation via email/SMS.
                 </span>
-            </div>
+            </motion.div>
 
-            <div className="hidden lg:flex w-full max-w-7xl bg-white rounded-3xl shadow-2xl p-4 md:p-10 flex-wrap lg:flex-nowrap items-end gap-4 border border-gray-100">
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{
+                    duration: 0.8, // Increased slightly for more "glide"
+                    ease: "easeOut",
+                    delay : .4
+                }}
+                className="hidden lg:flex w-full max-w-7xl bg-white rounded-3xl shadow-2xl p-4 md:p-10 flex-wrap lg:flex-nowrap items-end gap-4 border border-gray-100">
 
                 {/* Name */}
                 <InputField
@@ -188,27 +224,26 @@ export default function Reservation_HeroSection() {
                     <option value="quiet" className="cursor-pointer">Quiet Zone (Work)</option>
                 </SelectField>
 
-                   {/* --- SUBMIT BUTTON --- */}
-            <button
-                onClick={reservation}
-                disabled={loading}
-                className={`mt-4 flex items-center justify-center gap-2 cursor-pointer rounded-xl border border-black px-6 w-full py-4 text-white
-                font-bold tracking-wide transition-all duration-300 ${
-                    loading 
-                    ? "bg-gray-800 cursor-not-allowed" 
-                    : "bg-black hover:bg-white hover:text-black active:scale-95"
-                }`}
-            >
-                {loading ? (
-                    <>
-                        <Loader2 className="animate-spin" size={20} />
-                        Processing...
-                    </>
-                ) : (
-                    "Book Now"
-                )}
-            </button>
-            </div>
+                {/* --- SUBMIT BUTTON --- */}
+                <button
+                    onClick={reservation}
+                    disabled={loading}
+                    className={`mt-4 flex items-center justify-center gap-2 cursor-pointer rounded-xl border border-black px-6 w-full py-4 text-white
+                font-bold tracking-wide transition-all duration-300 ${loading
+                            ? "bg-gray-800 cursor-not-allowed"
+                            : "bg-black hover:bg-white hover:text-black active:scale-95"
+                        }`}
+                >
+                    {loading ? (
+                        <>
+                            <Loader2 className="animate-spin" size={20} />
+                            Processing...
+                        </>
+                    ) : (
+                        "Book Now"
+                    )}
+                </button>
+            </motion.div>
         </div>
     );
 };

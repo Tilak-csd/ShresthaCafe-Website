@@ -1,7 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import FAQData from '../data/FAQData'
+import { motion } from 'motion/react'
+
 export default function FAQ_utils() {
-  const [activeIndex, setActiveIndex] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(null);
 
     const toggleAccordion = (index) => {
         setActiveIndex(activeIndex === index ? null : index);
@@ -9,19 +11,28 @@ export default function FAQ_utils() {
 
     return (
         <section className="max-w-4xl mx-auto px-6 py-10 sm:py-10">
-            <div className="text-center mb-12"> 
+            <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="text-center mb-12">
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
                     Frequently Asked Questions
                 </h2>
                 <p className="mt-4 text-lg text-gray-500">
                     Everything you need to know about our product and billing.
                 </p>
-            </div>
+            </motion.div>
 
             <div className="space-y-3">
                 {FAQData.map((item, index) => (
-                    <div
+                    <motion.div
                         key={index}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{ duration: 0.6, ease: "easeOut" }}
                         className="group border cursor-pointer border-gray-200 rounded-2xl transition-all duration-300 hover:border-black hover:shadow-md overflow-hidden"
                     >
                         <button
@@ -42,8 +53,8 @@ export default function FAQ_utils() {
                         {/* Smooth Height Transition */}
                         <div
                             className={`grid transition-all duration-300 ease-in-out ${activeIndex === index
-                                    ? "grid-rows-[1fr] opacity-100"
-                                    : "grid-rows-[0fr] opacity-0"
+                                ? "grid-rows-[1fr] opacity-100"
+                                : "grid-rows-[0fr] opacity-0"
                                 }`}
                         >
                             <div className="overflow-hidden">
@@ -52,9 +63,9 @@ export default function FAQ_utils() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </section>
-  )
+    )
 }

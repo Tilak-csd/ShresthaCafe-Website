@@ -12,10 +12,14 @@ export default function Menucards() {
                 {/* Card 1 */}
                 {menu.map((items, idx) => {
                     return <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 40 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, ease: "easeOut", delay: .2 }}
+                        viewport={{ once: true, amount: 0.3 }}
+                        transition={{
+                            duration: 0.8, // Increased slightly for more "glide"
+                            ease: [0.21, 0.47, 0.32, 0.98], // Custom curve for a soft finish
+                            delay: idx * 0.15 // Slightly tighter stagger feels more cohesive
+                        }}
                         key={idx} className="rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition">
                         <img
                             src={items.imageUrl}
