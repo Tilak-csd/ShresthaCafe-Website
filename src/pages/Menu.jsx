@@ -10,10 +10,9 @@ import Chatbot from '../components/ChatBot/ChatBot'
 export default function Menu() {
     return (
         <>
-            <Header_sub>
+            
                 <Navbar />
-                <HeroSection showbutton={false} heading={'Discover Our Café Menu'} text={'Explore our carefully curated selection of coffees, snacks, and sweet treats'} />
-            </Header_sub>
+                
             <Menu_cards />
             <Footer />
             <Chatbot />
