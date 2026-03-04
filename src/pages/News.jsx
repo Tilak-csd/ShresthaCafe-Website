@@ -10,10 +10,7 @@ import Chatbot from '../components/ChatBot/ChatBot'
 export default function News() {
     return (
         <>
-            <Header_sub>
-                <Navbar />
-                <HeroSection heading={"NEWS"} showbutton={false} />
-            </Header_sub>
+            <Navbar />
             <News_cards />
             <Footer />
             <Chatbot />
