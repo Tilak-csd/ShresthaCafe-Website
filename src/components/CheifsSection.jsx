@@ -221,7 +221,7 @@ export default function ChefsSection() {
               borderRadius: 14,
               border: '1px solid #d0dac8',
               display: 'flex', alignItems: 'center', gap: 14,
-              maxWidth: 560,
+              maxWidth: "100%",
             }}
           >
             <span style={{ fontSize: 22, flexShrink: 0 }}>🌿</span>
