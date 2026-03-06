@@ -9,6 +9,7 @@ import GetInTouch from '../components/GetInTouch'
 import Footer from '../components/Footer'
 import Menucards from '../components/Menucards'
 import Chatbot from '../components/ChatBot/ChatBot'
+import Testimonials from '../components/Testimonial'
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <Menucards />
       <Kitchen />
       <ChefsSection />
+      <Testimonials />
       <GetInTouch />
       <Footer />
       <Chatbot />
