@@ -339,7 +339,7 @@ export default function Footer() {
             <p className="ft-copy">
               © {year} <span>Shrestha Café</span>. All rights reserved.
             </p>
-            <p className="ft-made">Made with ☕ in Kathmandu</p>
+            {/* <p className="ft-made">Made with ☕ in Kathmandu</p> */}
           </div>
         </div>
 
