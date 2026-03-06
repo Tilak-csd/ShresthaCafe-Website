@@ -38,7 +38,7 @@ export default function Navbar() {
       {/* ── Navbar bar ─────────────────────────────────────────────────────── */}
       <div className={`
         relative flex justify-between items-center h-[60px] w-full
-        md:px-10 px-4 border-b md:border-0 ${borderColor} z-20
+        md:px-10 px-4 border-b md:border-0 ${borderColor} z-500
         ${open ? mobileOpenBg : ''}
       `}>
         {/* Logo */}
@@ -68,7 +68,7 @@ export default function Navbar() {
       {/* ── Mobile slide-down panel ────────────────────────────────────────── */}
       <div className={`
         absolute md:hidden flex justify-center items-center flex-col gap-5
-        top-[60px] left-0 w-full h-[calc(100vh-60px)] z-10
+        top-[60px] left-0 w-full h-[calc(100vh-60px)] z-500
         transition-all duration-500 ease-in-out
         ${mobilePanelBg}
         ${open ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'}
